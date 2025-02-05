@@ -1,0 +1,29 @@
+2025-02-05 22:20:00,123 - INFO - [amazon_reviews_processing.py:37] - === Starting Amazon Reviews Processing ===
+2025-02-05 22:20:00,124 - INFO - [amazon_reviews_processing.py:39] - Starting data processing pipeline
+2025-02-05 22:20:09,567 - INFO - [amazon_reviews_processing.py:42] - Creating Spark session...
+2025-02-05 22:20:09,568 - INFO - [amazon_reviews_processing.py:50] - Spark session created with configurations:
+2025-02-05 22:20:09,569 - DEBUG - [amazon_reviews_processing.py:52] -   spark.driver.memory: 12g
+2025-02-05 22:20:09,570 - DEBUG - [amazon_reviews_processing.py:52] -   spark.executor.memory: 12g
+2025-02-05 22:20:09,571 - DEBUG - [amazon_reviews_processing.py:52] -   spark.sql.shuffle.partitions: 100
+2025-02-05 22:20:09,572 - DEBUG - [amazon_reviews_processing.py:52] -   spark.eventLog.enabled: true
+2025-02-05 22:20:09,573 - DEBUG - [amazon_reviews_processing.py:52] -   spark.eventLog.dir: logs/spark_events
+2025-02-05 22:20:09,574 - INFO - [amazon_reviews_processing.py:55] - System Information:
+2025-02-05 22:20:09,575 - INFO - [amazon_reviews_processing.py:56] - Python version: 3.11.5 (main, Sep 11 2023, 08:31:25) [GCC 9.4.0]
+2025-02-05 22:20:09,576 - INFO - [amazon_reviews_processing.py:57] - Available CPU count: 8
+2025-02-05 22:20:09,577 - INFO - [amazon_reviews_processing.py:58] - Current working directory: /home/user/projects/amazon_reviews
+2025-02-05 22:20:09,578 - INFO - [amazon_reviews_processing.py:60] - GPU information saved to logs/gpu_info.txt
+2025-02-05 22:20:09,579 - INFO - [amazon_reviews_processing.py:63] - Defining schema...
+2025-02-05 22:20:09,580 - INFO - [amazon_reviews_processing.py:76] - Input file size: 3.45 GB
+2025-02-05 22:20:09,581 - INFO - [amazon_reviews_processing.py:79] - Loading JSON data...
+2025-02-05 22:20:13,345 - INFO - [amazon_reviews_processing.py:86] - Data load completed successfully
+2025-02-05 22:20:13,346 - INFO - [amazon_reviews_processing.py:92] - Starting data validation...
+2025-02-05 22:42:59,678 - INFO - [amazon_reviews_processing.py:95] - Total records loaded: 233055327
+2025-02-05 23:15:43,123 - INFO - [amazon_reviews_processing.py:98] - Column 'reviewerID' has 0 null/missing values
+2025-02-05 23:15:43,124 - INFO - [amazon_reviews_processing.py:98] - Column 'asin' has 0 null/missing values
+2025-02-05 23:15:43,125 - INFO - [amazon_reviews_processing.py:98] - Column 'reviewText' has 153384 null/missing values
+2025-02-05 23:15:43,126 - INFO - [amazon_reviews_processing.py:98] - Column 'overall' has 0 null/missing values
+2025-02-05 23:15:43,127 - INFO - [amazon_reviews_processing.py:98] - Column 'unixReviewTime' has 0 null/missing values
+2025-02-05 23:15:43,128 - INFO - [amazon_reviews_processing.py:100] - Data validation completed
+2025-02-05 23:15:43,129 - INFO - [amazon_reviews_processing.py:103] - Script execution completed in 3343.32 seconds
+2025-02-05 23:15:43,130 - INFO - [amazon_reviews_processing.py:105] - Stopping Spark session
+2025-02-05 23:15:43,131 - INFO - [amazon_reviews_processing.py:107] - === Processing Complete ===
