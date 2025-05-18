@@ -1,0 +1,14 @@
+[
+  { "region": "North", "category": "A", "value": 100, "target": "B", "source": "North" },
+  { "region": "North", "category": "B", "value": 150, "target": "C", "source": "North" },
+  { "region": "North", "category": "C", "value": 120, "target": "A", "source": "South" },
+  { "region": "South", "category": "A", "value": 200, "target": "B", "source": "South" },
+  { "region": "South", "category": "B", "value": 180, "target": "C", "source": "East" },
+  { "region": "South", "category": "C", "value": 190, "target": "A", "source": "East" },
+  { "region": "East", "category": "A", "value": 210, "target": "B", "source": "West" },
+  { "region": "East", "category": "B", "value": 240, "target": "C", "source": "West" },
+  { "region": "East", "category": "C", "value": 220, "target": "A", "source": "North" },
+  { "region": "West", "category": "A", "value": 270, "target": "B", "source": "North" },
+  { "region": "West", "category": "B", "value": 300, "target": "C", "source": "South" },
+  { "region": "West", "category": "C", "value": 280, "target": "A", "source": "South" }
+] 
