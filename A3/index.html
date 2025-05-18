@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Data Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <div class="header-content">
+                <h1><i class="ri-dashboard-line"></i> Interactive Data Dashboard</h1>
+                <div class="header-actions">
+                    <button id="help-btn" class="icon-btn" title="Help">
+                        <i class="ri-question-line"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                        <i class="ri-sun-line"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section id="upload-section" class="section">
+            <div class="section-header">
+                <h2><i class="ri-upload-cloud-2-line"></i> Data Upload</h2>
+            </div>
+            <div class="upload-container">
+                <div class="upload-area" id="drop-zone">
+                    <i class="ri-file-upload-line"></i>
+                    <p>Drag and drop your JSON file here or</p>
+                    <label for="file-upload" class="upload-btn">
+                        Choose File
+                        <input type="file" id="file-upload" accept=".json" hidden>
+                    </label>
+                    <p class="upload-hint">Supported format: Flat JSON</p>
+                </div>
+                <div class="file-info" id="file-info" style="display: none;">
+                    <div class="file-details">
+                        <i class="ri-file-list-line"></i>
+                        <span id="file-name"></span>
+                        <button class="remove-file-btn" id="remove-file-btn" title="Remove File">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="upload-status" class="upload-status"></div>
+            </div>
+        </section>
+
+        <section id="dimension-config-section" class="section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="ri-settings-3-line"></i> Configure Chart Dimensions</h2>
+                <button id="render-charts-btn" class="primary-btn" style="display: none;">
+                    <i class="ri-bar-chart-fill"></i> Render Charts
+                </button>
+            </div>
+            <p class="section-hint">Select the appropriate data columns for each visualization. Charts will update once dimensions are chosen.</p>
+        </section>
+        
+        <section id="filters-section" class="section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="ri-filter-3-line"></i> Data Filters</h2>
+                <div class="filter-actions">
+                    <button id="clear-filters-btn" class="secondary-btn">
+                        <i class="ri-filter-off-line"></i> Clear All Filters
+                    </button>
+                    <button id="apply-filters-btn" class="primary-btn">
+                        <i class="ri-check-line"></i> Apply Filters
+                    </button>
+                </div>
+            </div>
+            <div class="filter-container" id="filter-container">
+                <!-- Filters will be dynamically injected here by dashboard.js -->
+                <p class="empty-state" id="filters-empty-state">Load data and configure charts to see available filters.</p>
+            </div>
+        </section>
+
+        <main class="visualization-grid" id="visualization-grid" style="display: none;">
+            <!-- Radial Bar Chart Row -->
+            <div class="chart-row">
+                <div class="chart-wrapper">
+                    <div class="chart-container" id="radial-bar-container">
+                        <div class="chart-header">
+                            <h3><i class="ri-pie-chart-line"></i> Radial Bar Chart</h3>
+                            <div class="chart-actions">
+                                <button class="icon-btn download-svg-btn" data-chart-type="radialBar" title="Download SVG">
+                                    <i class="ri-download-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <div class="chart" id="radial-bar-chart">
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-settings-panel">
+                    <h4>Radial Bar Chart Settings</h4>
+                    <div id="radial-bar-settings" class="settings-fields-container">
+                        <!-- Settings will be injected by dashboard.js -->
+                         <p class="settings-prompt">Load data to see dimension options.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chord Diagram Row -->
+            <div class="chart-row">
+                <div class="chart-wrapper">
+                    <div class="chart-container" id="chord-container">
+                        <div class="chart-header">
+                            <h3><i class="ri-bubble-chart-line"></i> Chord Diagram</h3>
+                            <div class="chart-actions">
+                                <button class="icon-btn download-svg-btn" data-chart-type="chord" title="Download SVG">
+                                    <i class="ri-download-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <div class="chart" id="chord-chart">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-settings-panel">
+                    <h4>Chord Diagram Settings</h4>
+                    <div id="chord-settings" class="settings-fields-container">
+                        <p class="settings-prompt">Load data to see dimension options.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Force-Directed Graph Row -->
+            <div class="chart-row">
+                 <div class="chart-wrapper">
+                    <div class="chart-container" id="force-directed-container">
+                        <div class="chart-header">
+                            <h3><i class="ri-node-tree"></i> Force-Directed Graph</h3>
+                            <div class="chart-actions">
+                                <button class="icon-btn download-svg-btn" data-chart-type="forceDirected" title="Download SVG">
+                                    <i class="ri-download-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <div class="chart" id="force-directed-chart">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-settings-panel">
+                    <h4>Force-Directed Graph Settings</h4>
+                    <div id="force-directed-settings" class="settings-fields-container">
+                         <p class="settings-prompt">Load data to see dimension options.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sunburst Chart Row -->
+            <div class="chart-row">
+                <div class="chart-wrapper">
+                    <div class="chart-container" id="sunburst-container">
+                        <div class="chart-header">
+                            <h3><i class="ri-sun-line"></i> Sunburst Chart</h3>
+                            <div class="chart-actions">
+                                <button class="icon-btn download-svg-btn" data-chart-type="sunburst" title="Download SVG">
+                                    <i class="ri-download-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <div class="chart" id="sunburst-chart">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-settings-panel">
+                    <h4>Sunburst Chart Settings</h4>
+                    <div id="sunburst-settings" class="settings-fields-container">
+                        <p class="settings-prompt">Load data to see dimension options.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="ri-question-line"></i> Help</h2>
+                <button class="close-modal-btn" id="close-help-modal-btn">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Dashboard Guide</h3>
+                <p>This dashboard allows you to visualize data from any uploaded flat JSON file.</p>
+                <h4>Steps:</h4>
+                <ol>
+                    <li><strong>Upload Data:</strong> Drag & drop a JSON file or use the "Choose File" button.</li>
+                    <li><strong>Configure Dimensions:</strong> After uploading, the "Configure Chart Dimensions" section will appear. For each chart type, select the appropriate columns from your data to define how the chart is rendered.
+                        <ul>
+                            <li><strong>Radial Bar:</strong> Needs a categorical field (for bars) and a numerical field (for bar length).</li>
+                            <li><strong>Chord Diagram:</strong> Needs two categorical fields (source & target of relationships) and one numerical field (strength of relationship).</li>
+                            <li><strong>Force-Directed Graph:</strong> Needs a field for node IDs and fields to define links between nodes.</li>
+                            <li><strong>Sunburst Chart:</strong> Needs one or more categorical fields (for hierarchy levels) and an optional numerical field (for segment size). You can reorder selected hierarchy fields.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Render Charts:</strong> Once dimensions are set, click "Render Charts".</li>
+                    <li><strong>Filter Data:</strong> Use the "Data Filters" section to narrow down your dataset. Click "Apply Filters" to update the visualizations.</li>
+                    <li><strong>Interact with Charts:</strong>
+                        <ul>
+                            <li>Hover over elements for tooltips.</li>
+                            <li>Click to select/deselect items.</li>
+                            <li>Use Ctrl/Shift + Click for multiple selections.</li>
+                            <li>Selections in one chart will highlight related data in others (Brushing & Linking).</li>
+                            <li>Force-Directed Graph: Zoom with mouse wheel, pan by dragging.</li>
+                            <li>Sunburst Chart: Click segments to zoom into hierarchy levels.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Download:</strong> Use the download icon on each chart to save it as an SVG image.</li>
+                </ol>
+                 <h4>Tips for JSON data:</h4>
+                <ul>
+                    <li>Ensure your JSON is an array of flat objects (e.g., `[{"colA": "val1", "colB": 10}, {"colA": "val2", "colB": 20}]`).</li>
+                    <li>Column names will be used for dimension selection.</li>
+                    <li>For relational charts (Chord, Force-Directed), ensure your data contains columns that can define these relationships.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Tooltip -->
+    <div id="main-tooltip" class="tooltip" style="opacity: 0; position: absolute; pointer-events: none;"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p id="loading-message">Processing Data...</p>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <script src="js/radial_bar.js"></script>
+    <script src="js/chord.js"></script>
+    <script src="js/force_directed.js"></script>
+    <script src="js/sunburst.js"></script>
+    <script src="js/dashboard.js"></script>
+
+    <script>
+        // Basic UI interactions (Help Modal, Theme Toggle)
+        // These are simple enough to keep here or move to a separate ui.js if preferred.
+
+        // Help Modal
+        const helpBtn = document.getElementById('help-btn');
+        const helpModal = document.getElementById('help-modal');
+        const closeHelpModalBtn = document.getElementById('close-help-modal-btn');
+
+        if (helpBtn) {
+            helpBtn.addEventListener('click', () => {
+                if (helpModal) helpModal.style.display = 'flex';
+            });
+        }
+        if (closeHelpModalBtn) {
+            closeHelpModalBtn.addEventListener('click', () => {
+                if (helpModal) helpModal.style.display = 'none';
+            });
+        }
+        // Close modal if clicked outside
+        window.addEventListener('click', (event) => {
+            if (event.target === helpModal) {
+                helpModal.style.display = 'none';
+            }
+        });
+
+
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                const icon = themeToggleBtn.querySelector('i');
+                icon.classList.toggle('ri-sun-line');
+                icon.classList.toggle('ri-moon-line');
+                // Persist theme preference (optional)
+                if (document.body.classList.contains('dark-theme')) {
+                    localStorage.setItem('dashboardTheme', 'dark');
+                } else {
+                    localStorage.setItem('dashboardTheme', 'light');
+                }
+            });
+        }
+
+        // Apply persisted theme on load and initialize dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dashboardTheme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                const icon = themeToggleBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('ri-sun-line');
+                    icon.classList.add('ri-moon-line');
+                }
+            }
+            
+            // Initialize the dashboard - simplify with direct initialization
+            console.log('Initializing Dashboard...');
+            window.dashboardApp = new Dashboard();
+        });
+
+        // Tooltip for HTML elements with [title] - keep this if you still want generic HTML tooltips
+        // However, D3 charts will use the #main-tooltip
+        document.querySelectorAll('[title]').forEach(element => {
+            element.addEventListener('mouseenter', e => {
+                const targetElement = e.currentTarget; // Use currentTarget
+                const tooltipText = targetElement.getAttribute('title');
+                if (!tooltipText) return;
+
+                const tooltip = document.getElementById('main-tooltip');
+                if (!tooltip) return;
+                
+                tooltip.innerHTML = tooltipText;
+                tooltip.style.opacity = 0.9;
+                
+                const rect = targetElement.getBoundingClientRect();
+                // Position tooltip intelligently: try below, then above, then to the right.
+                let top = rect.bottom + 5;
+                let left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2);
+
+                if (top + tooltip.offsetHeight > window.innerHeight) { // If it goes off screen bottom
+                    top = rect.top - tooltip.offsetHeight - 5; // Position above
+                }
+                if (left < 0) left = 5; // Adjust if off screen left
+                if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 5; // Adjust if off screen right
+
+
+                tooltip.style.top = top + 'px';
+                tooltip.style.left = left + 'px';
+
+                // Clear title to prevent native tooltip
+                targetElement.setAttribute('data-original-title', tooltipText);
+                targetElement.removeAttribute('title');
+            });
+
+            element.addEventListener('mouseleave', e => {
+                const targetElement = e.currentTarget;
+                const tooltip = document.getElementById('main-tooltip');
+                if (tooltip) {
+                    tooltip.style.opacity = 0;
+                }
+                // Restore title
+                const originalTitle = targetElement.getAttribute('data-original-title');
+                if (originalTitle) {
+                    targetElement.setAttribute('title', originalTitle);
+                    targetElement.removeAttribute('data-original-title');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

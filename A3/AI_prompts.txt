@@ -1,0 +1,80 @@
+# AI Prompts Used - A3: Interactive D3 Dashboard
+
+---
+
+prompt 1:
+how do i create a radial bar chart with d3.js? i want it to be dynamic, like if the user selects a different dimension it should update smoothly. data comes from a json file they upload
+
+---
+
+prompt 2:
+i'm trying to build a chord diagram from relationship data. it's like company a interacts with b, etc. how do i show that using d3? also can i highlight links when hovering over an arc?
+
+---
+
+prompt 3:
+getting an error in my force graph line: `.on("tick", ()_ticked(node, link));`  
+says expression expected or comma missing. not sure what’s wrong
+
+---
+
+prompt 4:
+how can i link all my charts together? like when i select something in the sunburst chart, it should also highlight it in the radial bar and others. is there an easy way to do this brushing thing in d3?
+
+---
+
+prompt 5:
+how do i get all column names from a json file in js after uploading it? need to show in a dropdown so user can pick what they want to visualize
+
+---
+
+prompt 6:
+need a color scale that works across all my charts so companyA is always same color. how can i define a global color scale in d3 and use it in different js files?
+
+---
+
+prompt 7:
+my force graph nodes can be dragged but now i want to also allow zoom and pan on the whole svg. but they seem to conflict with each other. any way to do both properly?
+
+---
+
+prompt 8:
+i’m making a sunburst chart and want tooltips to show like full path of the hierarchy. like “World > Asia > China” etc. how can i show that on hover?
+
+---
+
+prompt 9:
+i’ve 4 charts (radial, chord, force, sunburst) on the page and it looks cluttered. any tips on layouting this nicely in html/css? like how do people usually arrange multiple svg charts?
+
+---
+
+prompt 10:
+how to update a d3 chart (like radial one) when user picks a new value from the dropdown? i want smooth transition not hard reload
+
+---
+
+prompt 11:
+i see some examples use .enter().append() and some use .join(). which one is better for updating charts, especially when data changes?
+
+---
+
+prompt 12:
+i split all my chart code into separate js files. how can i make functions from radial_bar.js, chord.js etc work together in dashboard.js? not sure how to connect them
+
+---
+
+prompt 13:
+my tooltips from different charts are overlapping each other or sometimes flickering. any idea how to fix or maybe use one common tooltip?
+
+---
+
+prompt 14:
+sunburst click zoom doesn’t work. when i click on segment, nothing happens. i followed an example with partition layout. maybe i missed something?
+
+---
+
+prompt 15:
+do you have a simple example of 2 d3 charts that are connected? like user clicks something in chart1 and chart2 updates. i just need basic idea for brushing/linking
+
+---
+

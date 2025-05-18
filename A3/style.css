@@ -1,0 +1,911 @@
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables */
+:root {
+    --primary-color: #3498db; /* A more vibrant blue */
+    --secondary-color: #2c3e50; /* Dark blue-grey */
+    --accent-color: #e74c3c; /* Red for alerts/highlights */
+    --success-color: #2ecc71; /* Green for success */
+    --warning-color: #f39c12; /* Orange for warnings */
+
+    --background-light: #f4f6f8; /* Lighter background */
+    --surface-light: #ffffff; /* Card/modal background */
+    --text-light-primary: #2c3e50;
+    --text-light-secondary: #596275;
+    --border-light: #dfe4ea;
+
+    --background-dark: #1e272e; /* Dark background */
+    --surface-dark: #2c3a47; /* Dark card/modal background */
+    --text-dark-primary: #f5f6fa;
+    --text-dark-secondary: #bdc3c7;
+    --border-dark: #4a6378;
+
+    --font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-medium: all 0.3s ease-in-out;
+
+    /* Default to light theme */
+    --bg-color: var(--background-light);
+    --surface-color: var(--surface-light);
+    --text-primary: var(--text-light-primary);
+    --text-secondary: var(--text-light-secondary);
+    --border-color: var(--border-light);
+
+    --color-primary: var(--primary-color);
+    --color-primary-dark: #2980b9;
+    --color-accent: var(--accent-color);
+    --color-card-bg: var(--surface-color);
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-border: var(--border-color);
+    --color-border-light: var(--border-light);
+}
+
+body.dark-theme {
+    --bg-color: var(--background-dark);
+    --surface-color: var(--surface-dark);
+    --text-primary: var(--text-dark-primary);
+    --text-secondary: var(--text-dark-secondary);
+    --border-color: var(--border-dark);
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    padding: var(--spacing-md);
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1800px; /* Increased max-width for larger screens */
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: background-color var(--transition-medium);
+}
+
+/* Header */
+header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color var(--transition-medium);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem; /* Slightly smaller for balance */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+h1 i {
+    font-size: 1.6rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Sections */
+.section {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg); /* Increased padding */
+    background: var(--bg-color); /* Use body bg for section contrast with dashboard surface */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color var(--transition-medium);
+}
+
+.section-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+.section-header h2 i {
+    color: var(--primary-color);
+}
+.section-hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: calc(-1 * var(--spacing-sm)); /* Pull up slightly */
+    margin-bottom: var(--spacing-md);
+}
+
+
+/* Upload Section */
+.upload-container {
+    text-align: center;
+    padding: var(--spacing-md) 0; /* Reduced padding as section has padding */
+}
+
+.upload-area {
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+    background: var(--surface-color);
+    transition: var(--transition-medium);
+    cursor: pointer;
+}
+
+.upload-area:hover, .upload-area.drag-over {
+    border-color: var(--secondary-color);
+    background: var(--bg-color); /* Lighten on hover */
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.upload-area p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-weight: 500;
+    margin: var(--spacing-md) 0;
+    border: none;
+}
+
+.upload-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.upload-hint {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-md);
+}
+
+.file-info {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--surface-color); /* Match section bg */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex; /* This is controlled by JS, but good to have defaults */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.file-details i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+#remove-file-btn { /* Changed from .remove-file */
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+    transition: var(--transition-fast);
+    font-size: 1.2rem; /* Ensure icon is large enough */
+}
+
+#remove-file-btn:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: darken(var(--accent-color), 10%);
+}
+
+#upload-status {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+#upload-status.success {
+    background-color: var(--success-color);
+    color: white;
+    border: 1px solid darken(var(--success-color), 10%);
+}
+#upload-status.error {
+    background-color: var(--accent-color);
+    color: white;
+    border: 1px solid darken(var(--accent-color), 10%);
+}
+
+/* Dimension Configuration Section */
+#dimension-config-section .settings-group { /* For general structure within this section if needed */
+    margin-bottom: var(--spacing-md);
+}
+#dimension-config-section h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+/* Filters Section */
+#filters-section .filter-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.filter-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.filter {
+    padding: var(--spacing-md);
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+.filter label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.range-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+.range-container input[type="range"] {
+    width: 100%;
+    accent-color: var(--primary-color); /* Modern way to color range sliders */
+}
+.range-values {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+
+/* General Input/Select Styles */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem var(--spacing-md); /* Increased padding */
+    margin-top: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--surface-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.2);
+}
+
+select[multiple] {
+    min-height: 120px; /* Ensure it's tall enough */
+    padding: var(--spacing-sm);
+}
+select[multiple] option {
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* Visualization Grid */
+.visualization-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.chart-row {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.chart-wrapper {
+    flex: 3;
+    display: block !important;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    background: var(--surface-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color var(--transition-medium);
+}
+.chart-header h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+.chart-header h3 i {
+    color: var(--primary-color);
+}
+.chart-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.chart-content {
+    flex: 1; /* Allow chart content to grow */
+    position: relative; /* For positioning elements like tooltips if needed locally */
+    min-height: 400px; /* Ensure a minimum drawing area */
+    overflow: hidden; /* Ensure D3 content doesn't overflow unexpectedly */
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex; /* For centering placeholder text */
+    align-items: center; /* For centering placeholder text */
+    justify-content: center; /* For centering placeholder text */
+}
+.chart-placeholder-text, .settings-prompt, #filters-empty-state {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+
+.chart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* D3 often needs this */
+    font-family: var(--font-family);
+}
+.chart svg text {
+    fill: var(--text-secondary); /* Default text color for SVG elements */
+}
+
+
+.chart-settings-panel {
+    flex: 1;
+    display: block !important;
+    min-width: 250px;
+    padding: 15px;
+    background: var(--color-card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+}
+.chart-settings-panel h4 {
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+}
+.settings-fields-container {
+    display: block !important; /* Ensure always visible */
+}
+.settings-instruction {
+    color: var(--color-text-secondary);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+.field-group {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--color-border-light);
+}
+.field-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+.field-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card-bg);
+    color: var(--color-text-primary);
+}
+.multi-select-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+.multi-select-container label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    font-weight: normal;
+}
+.multi-select-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+.settings-complete {
+    color: var(--color-accent);
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Ensure dimension config section is visible */
+#dimension-config-section {
+    display: block !important;
+}
+
+/* Make sure the Render Charts button is prominent */
+#render-charts-btn {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+}
+
+#render-charts-btn:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) { /* Adjust breakpoint */
+    .chart-row {
+        grid-template-columns: 1fr; /* Stack chart and settings */
+    }
+    .chart-settings-panel {
+        max-height: 350px; /* Adjust height when stacked */
+        margin-top: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 992px) {
+    .chart-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-container {
+        padding: var(--spacing-sm);
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+    .chart-header h3 {
+        font-size: 1.1rem;
+    }
+    .primary-btn, .secondary-btn, .upload-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Tooltip (Main Global Tooltip) */
+#main-tooltip {
+    position: absolute; /* Will be positioned by JS */
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--secondary-color); /* Dark background for tooltip */
+    color: white;
+    border-radius: var(--border-radius);
+    pointer-events: none; /* Critical */
+    font-size: 0.875rem;
+    z-index: 9999; /* Ensure it's on top */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    max-width: 300px;
+    line-height: 1.4;
+    transition: opacity 0.1s ease-out; /* Faster tooltip transition */
+}
+
+
+/* D3 Chart Specific Styles (can be expanded in individual JS files or here) */
+.chart path,
+.chart circle,
+.chart rect,
+.chart line,
+.chart text {
+    transition: var(--transition-fast); /* General transition for D3 elements */
+}
+
+/* Selection Styles for D3 elements (example, can be more specific) */
+.selected { /* For general selected state, e.g., on a path or circle */
+    stroke: var(--accent-color) !important; /* Use important if D3 inline styles override */
+    stroke-width: 2px !important;
+    opacity: 1 !important;
+}
+
+.dimmed { /* For general dimmed state */
+    opacity: 0.3 !important;
+}
+
+/* Specific for Chord Diagram */
+.chord-chart .group path { /* Use chart ID for specificity */
+    /* fill-opacity: 0.8; */ /* Handled by D3 color scale */
+}
+.chord-chart .ribbon {
+    fill-opacity: 0.7;
+}
+
+/* Specific for Force Directed */
+.force-directed-chart .node circle {
+    stroke: var(--surface-color); /* White stroke for better definition */
+    stroke-width: 1.5px;
+}
+.force-directed-chart .link {
+    stroke: var(--text-secondary);
+    stroke-opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Loading States */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(var(--surface-color-rgb, 255, 255, 255), 0.85); /* Use RGB for opacity */
+    backdrop-filter: blur(4px); /* Frosted glass effect */
+    display: flex; /* Controlled by JS */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Highest z-index */
+    color: var(--text-primary);
+}
+body.dark-theme .loading-overlay {
+    background: rgba(var(--surface-dark-rgb, 44, 58, 71), 0.85);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color); /* Spinner color */
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Button Styles */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: var(--transition-fast);
+    font-size: 1.2rem; /* Default icon size */
+}
+.icon-btn i {
+    display: block; /* Fix potential alignment issues with <i> */
+}
+.icon-btn:hover {
+    background: var(--bg-color); /* Subtle hover background */
+    color: var(--primary-color);
+}
+
+.primary-btn, .secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 0.7rem 1.2rem; /* Adjusted padding */
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    font-weight: 600; /* Bolder buttons */
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: 0.95rem;
+    text-decoration: none; /* For <a> tags styled as buttons */
+}
+.primary-btn i, .secondary-btn i {
+    font-size: 1.1em;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+.primary-btn:hover {
+    background: darken(var(--primary-color), 10%);
+    border-color: darken(var(--primary-color), 10%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.primary-btn:disabled {
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.secondary-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.secondary-btn:disabled {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* Modal Styles (Help Modal) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay for modal */
+    backdrop-filter: blur(5px);
+    display: flex; /* Controlled by JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    padding: var(--spacing-md);
+}
+
+.modal-content {
+    background: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 700px; /* Max width for help modal */
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-medium);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color var(--transition-medium);
+}
+.modal-header h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+.modal-header h2 i {
+    color: var(--primary-color);
+}
+.close-modal-btn { /* Specific ID for close button */
+    /* Uses .icon-btn styles */
+}
+
+.modal-body h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+.modal-body h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+.modal-body p, .modal-body li {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.modal-body ol, .modal-body ul {
+    margin-left: var(--spacing-lg);
+}
+.modal-body ul ul { /* Nested lists */
+    margin-top: var(--spacing-xs);
+}
+.modal-body code {
+    background-color: var(--bg-color);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: calc(var(--border-radius) / 2);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+}
+
+
+/* Custom Scrollbar Styling (already good, just ensure variables are used) */
+::-webkit-scrollbar {
+    width: 10px; /* Slightly wider for easier grabbing */
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--bg-color); /* Creates a "padding" effect */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Helper for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Radial Bar Chart Specific */
+#radial-bar-chart .bar {
+    transition: opacity 0.3s, fill 0.3s;
+    cursor: pointer;
+}
+
+#radial-bar-chart .bar:hover {
+    opacity: 0.8;
+}
+
+/* Chord Diagram Specific */
+#chord-chart .chord {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+#chord-chart .group path {
+    cursor: pointer;
+}
+
+/* Sunburst Chart Specific */
+#sunburst-chart .slice {
+    transition: opacity 0.3s, fill 0.3s;
+    cursor: pointer;
+}
+
+#sunburst-chart .slice:hover {
+    opacity: 0.8;
+}
+
+/* Force Directed Chart Specific */
+#force-directed-chart .node {
+    cursor: pointer;
+}
+
+#force-directed-chart .link {
+    stroke: var(--text-secondary);
+    stroke-opacity: 0.5;
+    pointer-events: none;
+}

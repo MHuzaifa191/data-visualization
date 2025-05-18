@@ -1,0 +1,26 @@
+[
+  {
+    "category": "A",
+    "value": 10,
+    "source": "A",
+    "target": "B",
+    "linkValue": 5,
+    "nodeId": "A"
+  },
+  {
+    "category": "B",
+    "value": 20,
+    "source": "B",
+    "target": "C",
+    "linkValue": 15,
+    "nodeId": "B" 
+  },
+  {
+    "category": "C",
+    "value": 30,
+    "source": "C",
+    "target": "A",
+    "linkValue": 25,
+    "nodeId": "C"
+  }
+] 
